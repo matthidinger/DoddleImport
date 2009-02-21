@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4C76F75B-5B45-4F00-8058-CB24FE7F6D12}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Doddle.Import</RootNamespace>
+    <AssemblyName>Doddle.Import</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ObjectBuilder2, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Microsoft.Practices.ObjectBuilder2.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\ImportingElement.cs" />
+    <Compile Include="Configuration\RuleElement.cs" />
+    <Compile Include="Configuration\RulesElementCollection.cs" />
+    <Compile Include="Configuration\SpreadsheetConfigurationException.cs" />
+    <Compile Include="Configuration\SpreadsheetElement.cs" />
+    <Compile Include="Configuration\ValidationElement.cs" />
+    <Compile Include="Configuration\ValidationMessageElement.cs" />
+    <Compile Include="Configuration\ValidationMessagesElementCollection.cs" />
+    <Compile Include="Importing\CollectionImportDestination.cs" />
+    <Compile Include="Importing\ColumnValidationError.cs" />
+    <Compile Include="Importing\ColumnValidationErrorCollection.cs" />
+    <Compile Include="Importing\DataTypeValidationRule.cs" />
+    <Compile Include="Importing\ExcelFieldType.cs" />
+    <Compile Include="Importing\ExcelImporter.cs" />
+    <Compile Include="Importing\FileStructure.cs" />
+    <Compile Include="Importing\IImportRule.cs" />
+    <Compile Include="Importing\IImportValidator.cs" />
+    <Compile Include="Importing\ImportDestination.cs" />
+    <Compile Include="Importing\ImportDestinationField.cs" />
+    <Compile Include="Importing\ImportResult.cs" />
+    <Compile Include="Importing\ImportRowEventArgs.cs" />
+    <Compile Include="Importing\ImportRuleCollection.cs" />
+    <Compile Include="Importing\ImportTemplate.cs" />
+    <Compile Include="Importing\ImportValidationException.cs" />
+    <Compile Include="Importing\ImportValidationReportGenerator.cs" />
+    <Compile Include="Importing\ImportValidationResult.cs" />
+    <Compile Include="Importing\ImportValidator.cs" />
+    <Compile Include="Importing\MissingColumnAction.cs" />
+    <Compile Include="Importing\MissingHeadersRule.cs" />
+    <Compile Include="Importing\PropertyImportField.cs" />
+    <Compile Include="Importing\RequiredFieldsRule.cs" />
+    <Compile Include="Importing\RowValidationResult.cs" />
+    <Compile Include="Importing\RowValidationResultCollection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spreadsheet.cs" />
+    <Compile Include="SpreadsheetColumn.cs" />
+    <Compile Include="SpreadsheetColumnCollection.cs" />
+    <Compile Include="SpreadsheetRow.cs" />
+    <Compile Include="SpreadsheetRowCollection.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
