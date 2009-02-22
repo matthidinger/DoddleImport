@@ -19,7 +19,7 @@ namespace Doddle.Import
         {
             IImportSource source = sourceRow.ImportSource;
 
-            foreach (IImportField targetField in target.Fields)
+            foreach (ImportColumn targetField in target.Fields)
             {
                 if (!source.Columns.Contains(targetField.Name))
                     continue;
@@ -40,7 +40,8 @@ namespace Doddle.Import
 
                     ColumnValidationError error = new ColumnValidationError();
                     error.ColumnName = targetField.Name;
-                    error.Message = ""; //ExcelConfig.Importing.ValidationMessages.GetInvalidDataTypeMessage(importData, targetField.DataTypeName);
+                    error.Message = string.Format("Unable to cast '{0}' to '{1}'", importData, targetField.DataType); 
+                    //ExcelConfig.Importing.ValidationMessages.GetInvalidDataTypeMessage(importData, targetField.DataTypeName);
 
                     result.ColumnErrors.Add(error);
                 }

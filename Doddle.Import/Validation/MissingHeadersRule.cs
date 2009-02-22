@@ -19,7 +19,7 @@ namespace Doddle.Import
         {
             IImportSource source = row.ImportSource;
 
-            foreach (IImportField destinationFields in destination.Fields)
+            foreach (ImportColumn destinationFields in destination.Fields)
             {
                 if (destinationFields.IsRequired)
                 {
@@ -29,7 +29,8 @@ namespace Doddle.Import
 
                         ColumnValidationError error = new ColumnValidationError();
                         error.ColumnName = destinationFields.Name;
-                        error.Message = ""; //ExcelConfig.Importing.ValidationMessages.GetMissingHeadersMessage(destinationFields.Name);
+                        error.Message = string.Format("Missing header column '{0}'", destinationFields.Name); 
+                        //ExcelConfig.Importing.ValidationMessages.GetMissingHeadersMessage(destinationFields.Name);
 
                         result.ColumnErrors.Add(error);
                     }

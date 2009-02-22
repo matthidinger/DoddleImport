@@ -19,7 +19,7 @@ namespace Doddle.Import
         {
             IImportSource source = sourceRow.ImportSource;
 
-            foreach (IImportField destinationField in destination.Fields)
+            foreach (ImportColumn destinationField in destination.Fields)
             {
                 if (destinationField.IsRequired)
                 {
@@ -29,7 +29,7 @@ namespace Doddle.Import
 
                         ColumnValidationError error = new ColumnValidationError();
                         error.ColumnName = destinationField.Name;
-                        error.Message = ""; // ExcelConfig.Importing.ValidationMessages.GetInvalidColumnMessage(destinationField.Name);
+                        error.Message = "Required field"; // ExcelConfig.Importing.ValidationMessages.GetInvalidColumnMessage(destinationField.Name);
 
                         result.ColumnErrors.Add(error);
 
@@ -43,7 +43,7 @@ namespace Doddle.Import
 
                         ColumnValidationError error = new ColumnValidationError();
                         error.ColumnName = destinationField.Name;
-                        error.Message = ""; //ExcelConfig.Importing.ValidationMessages.GetRequiredFieldEmptyMessage(destinationField.Name);
+                        error.Message = "Required field"; //ExcelConfig.Importing.ValidationMessages.GetRequiredFieldEmptyMessage(destinationField.Name);
 
                         result.ColumnErrors.Add(error);
                     }

@@ -57,12 +57,16 @@ namespace Doddle.Import.WebControls
     }
 
     [DefaultProperty("ImportDestination")]
+    [DefaultEvent("RowImporting")]
     [ToolboxData("<{0}:ImportManager runat=server></{0}:ImportManager>")]
     public class ImportManager : CompositeControl
     {
         [Category("Importing")]
         public IImportDestination ImportDestination { get; set; }
 
+        [Category("Importing")]
+        [DefaultValue(false)]
+        public bool BypassValidation { get; set; }
         
 
         private GridView _validationGrid;
@@ -70,7 +74,10 @@ namespace Doddle.Import.WebControls
         private Button _importButton;
         private FileUpload _fileUpload;
 
+        [Category("Importing")]
         public event EventHandler<ImportRowEventArgs> RowImporting;
+
+        [Category("Importing")]
         public event EventHandler<ImportRowEventArgs> RowImported;
 
 
@@ -98,8 +105,19 @@ namespace Doddle.Import.WebControls
         void _importButton_Click(object sender, EventArgs e)
         {        
             Spreadsheet sheet = GetSpreadsheet();
-            Importer importer = new Importer();
 
+            ImportValidator validator = new ImportValidator();
+            validator.AllowEmptyRules = BypassValidation;
+
+            if (!BypassValidation)
+            {
+                validator.Rules.Add(new MissingHeadersRule());
+                validator.Rules.Add(new RequiredFieldsRule());
+                validator.Rules.Add(new DataTypeValidationRule());
+            }
+
+            Importer importer = new Importer(validator);
+            
             importer.RowImporting += this.RowImporting;
             importer.RowImported += this.RowImported;
             
@@ -115,13 +133,16 @@ namespace Doddle.Import.WebControls
 
             _validationGrid = new GridView();
             _validationGrid.AutoGenerateColumns = false;
-            _validationGrid.EmptyDataText = "Spreadsheet validation was successfull. No errors were found.";
+            _validationGrid.EmptyDataText = "Import validation was successfull. No errors were found.";
+
             TemplateField rowField = new TemplateField();
+            rowField.HeaderText = "Row Number";
+            
             rowField.ItemTemplate = new RowNmberTemplate();
             
             TemplateField errorsField = new TemplateField();
+            errorsField.HeaderText = "Errors";
             errorsField.ItemTemplate = new GridErrorsTemplate();
-
 
             _validationGrid.Columns.Add(rowField);
             _validationGrid.Columns.Add(errorsField);

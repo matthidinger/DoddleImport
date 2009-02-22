@@ -8,7 +8,7 @@ namespace Doddle.Import
     {
         internal static ImportColumnCollection LoadColumns(Spreadsheet sheet, DbDataReader reader)
         {
-            ImportColumnCollection columns = new ImportColumnCollection(sheet);
+            ImportColumnCollection columns = new ImportColumnCollection();
 
             if (reader == null)
                 return columns;

@@ -2,69 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using Microsoft.Practices.Unity;
-using Microsoft.Practices.Unity.Configuration;
 using System.Configuration;
 
 namespace Doddle.Import
 {
-    public interface IImportSource
-    {
-        ImportColumnCollection Columns { get; }
-        IEnumerable<ImportRow> Rows { get; }
-    }
-
-    public class ImportRow
-    {
-        private readonly Dictionary<string, object> _columnData = new Dictionary<string, object>();
-
-        public ImportRow(IImportSource source)
-        {
-            ImportSource = source;
-        }
-
-        public int RowNumber { get; set; }
-        public IImportSource ImportSource { get; set; }
-
-        public object this[string columnName]
-        {
-            get
-            {
-                try
-                {
-                    if (_columnData[columnName] == DBNull.Value)
-                        return null;
-
-                    return _columnData[columnName];
-                }
-                catch
-                {
-                    throw new ArgumentOutOfRangeException("columnName", "The import source row does not have a column named " + columnName);
-                }
-            }
-            set
-            {
-                _columnData[columnName] = value;
-            }
-        }
-
-    }
-
     public class Importer
     {
         private readonly IImportValidator _validator;
-        private IImportSource _source;
 
         public MissingColumnAction MissingColumnAction { get; set; }
 
         public Importer()
         {
-            UnityContainer container = new UnityContainer();
-            UnityConfigurationSection section = (UnityConfigurationSection)ConfigurationManager.GetSection("doddle/unity");
-            section.Containers.Default.Configure(container);
-
-
-            _validator = container.Resolve<IImportValidator>();
+            _validator = new ImportValidator();
 
             _validator.Rules.Add(new MissingHeadersRule());
             _validator.Rules.Add(new RequiredFieldsRule());
@@ -100,17 +50,25 @@ namespace Doddle.Import
                 handler(this, new ImportRowEventArgs(row));
         }
 
-        public ImportValidationResult Validate(Spreadsheet spreadsheet, IImportDestination destination)
+        public ImportValidationResult Validate(IImportSource source, IImportDestination destination)
         {
-            return _validator.Validate(spreadsheet, destination);
+            return _validator.Validate(source, destination);
         }
 
         public ImportResult Import(IImportSource source, IImportDestination destination)
         {
-            ImportValidationResult validation = _validator.Validate(source, destination);
-            if (validation.IsSpreadsheetValid == false)
+            return Import(source, destination, false);
+        }
+
+        public ImportResult Import(IImportSource source, IImportDestination destination, bool bypassValidation)
+        {
+            if (!bypassValidation)
             {
-                throw new ImportValidationException("This spreadsheet did not pass validation and cannot be imported.");
+                ImportValidationResult validation = _validator.Validate(source, destination);
+                if (validation.IsSpreadsheetValid == false)
+                {
+                    throw new ImportValidationException("This spreadsheet did not pass validation and cannot be imported.");
+                }
             }
 
             foreach (ImportColumn col in source.Columns)

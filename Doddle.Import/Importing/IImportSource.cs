@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections.ObjectModel;
 
 namespace Doddle.Import
 {
-    public class ImportRuleCollection : Collection<IImportRule>
+    public interface IImportSource
     {
+        ImportColumnCollection Columns { get; }
+        IEnumerable<ImportRow> Rows { get; }
     }
 }

@@ -35,7 +35,7 @@ namespace Doddle.Import
             html.AppendLine("<table border='1' cellpadding='0' cellspacing='0'>");
             html.AppendLine("<tr>");
 
-            foreach (IImportField field in ImportDestination.Fields)
+            foreach (ImportColumn field in ImportDestination.Fields)
             {
                 if (field.IsRequired)
                 {

@@ -17,7 +17,7 @@ namespace Doddle.Import
         /// <summary>
         /// The fields that the import target expects
         /// </summary>
-        IEnumerable<IImportField> Fields { get; }
+        ImportColumnCollection Fields { get; }
 
         /// <summary>
         /// Determines whether or not the Import Destination has the ability to create new fields at runtime

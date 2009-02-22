@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Doddle.SharePoint;
 using Microsoft.SharePoint;
+using System.Transactions;
 
 namespace Doddle.Import.SharePoint
 {
@@ -25,14 +26,17 @@ namespace Doddle.Import.SharePoint
             return _list.Fields.ContainsField(name);
         }
 
-        public IEnumerable<IImportField> Fields
+        public ImportColumnCollection Fields
         {
             get
             {
+                ImportColumnCollection columns = new ImportColumnCollection();
                 foreach (SPField field in _list.GetCustomFields())
                 {
-                    yield return new SPListImportField(field);
+                    columns.Add(field.Title, field.FieldValueType, field.Required); 
                 }
+
+                return columns;
             }
         }
 
@@ -44,29 +48,30 @@ namespace Doddle.Import.SharePoint
         public void CreateField(string fieldName, Type dataType)
         {
             SPField field = _list.AddField(fieldName, GetDataType(dataType.ToString()), false, false);
-            //SPField field = _list.AddField(fieldName, typeName, false, false);
             _list.Update();
         }
 
-
         public void ImportRow(ImportRow row)
         {
-            IImportSource source = row.ImportSource;
-
-            SPListItem item = _list.Items.Add();
-
-            foreach (ImportColumn col in source.Columns)
+            using (TransactionScope transaction = new TransactionScope())
             {
-                if (row[col.Name] != null)
+                IImportSource source = row.ImportSource;
+
+                SPListItem item = _list.Items.Add();
+
+                foreach (ImportColumn col in source.Columns)
                 {
-                    if (FieldExists(col.Name))
+                    if (row[col.Name] != null)
                     {
-                        item[col.Name] = row[col.Name];
+                        if (FieldExists(col.Name))
+                        {
+                            item[col.Name] = row[col.Name];
+                        }
                     }
                 }
-            }
 
-            item.Update();
+                item.Update();
+            }
         }
 
         private SPFieldType GetDataType(string dataType)

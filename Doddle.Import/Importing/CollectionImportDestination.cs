@@ -29,14 +29,16 @@ namespace Doddle.Import
             }
         }
 
-        public IEnumerable<IImportField> Fields
+        public ImportColumnCollection Fields
         {
             get 
             {
+                ImportColumnCollection columns = new ImportColumnCollection();
                 foreach (PropertyInfo pi in tType.GetProperties())
                 {
-                    yield return new PropertyImportField(pi);
+                    columns.Add(pi.Name, pi.PropertyType);
                 }
+                return columns;
             }
         }
 
