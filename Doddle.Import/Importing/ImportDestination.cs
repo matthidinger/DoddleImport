@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 
 namespace Doddle.Import
 {
@@ -16,7 +17,7 @@ namespace Doddle.Import
         /// <summary>
         /// The fields that the import target expects
         /// </summary>
-        IEnumerable<IImportDestinationField> Fields { get; }
+        IEnumerable<IImportField> Fields { get; }
 
         /// <summary>
         /// Determines whether or not the Import Destination has the ability to create new fields at runtime
@@ -27,13 +28,13 @@ namespace Doddle.Import
         /// Create a new field in the Import Destination
         /// </summary>
         /// <param name="fieldName">The name of the field</param>
-        /// <param name="typeName"></param>
-        void CreateField(string fieldName, string typeName);
+        /// <param name="dataType">The type of data this column contains</param>
+        void CreateField(string fieldName, Type dataType);
 
         /// <summary>
         /// Import a Spreadsheet row into the Import Destination
         /// </summary>
         /// <param name="row">The spreadsheet row to import</param>
-        void ImportRow(SpreadsheetRow row);
+        void ImportRow(ImportRow row);
     }
 }

@@ -29,7 +29,7 @@ namespace Doddle.Import
             }
         }
 
-        public IEnumerable<IImportDestinationField> Fields
+        public IEnumerable<IImportField> Fields
         {
             get 
             {
@@ -45,12 +45,12 @@ namespace Doddle.Import
             get { return false; }
         }
 
-        public void CreateField(string fieldName, string typeName)
+        public void CreateField(string fieldName, Type dataType)
         {
             throw new NotSupportedException();
         }
 
-        public void ImportRow(SpreadsheetRow row)
+        public void ImportRow(ImportRow row)
         {
             T t = new T();
 

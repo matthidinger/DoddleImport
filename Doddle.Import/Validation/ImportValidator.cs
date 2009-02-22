@@ -30,16 +30,16 @@ namespace Doddle.Import
         /// <summary>
         /// Validate a spreadsheet against an Import Target
         /// </summary>
-        /// <param name="spreadsheet">The spreadsheet to be validated</param>
-        /// <param name="destination">The import target where the spreadsheet rows will be inserted</param>
-        public ImportValidationResult Validate(Spreadsheet spreadsheet, IImportDestination destination)
+        /// <param name="source">The import source to be validated</param>
+        /// <param name="destination">The import target where the source rows will be inserted</param>
+        public ImportValidationResult Validate(IImportSource source, IImportDestination destination)
         {
             if (Rules.Count == 0 && AllowEmptyRules == false)
                 throw new ImportValidationException("Unable to Validate because no Import Rules have been added to the Rules property. If this was intentional set the AllowEmptyRules property to true");
 
             ImportValidationResult importResult = new ImportValidationResult();
 
-            foreach (SpreadsheetRow row in spreadsheet.Rows)
+            foreach (ImportRow row in source.Rows)
             {
                 RowValidationResult rowResult = new RowValidationResult(row);
 

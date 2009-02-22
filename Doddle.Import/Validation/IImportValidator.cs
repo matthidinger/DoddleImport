@@ -15,8 +15,8 @@ namespace Doddle.Import
         /// <summary>
         /// Validate a spreadsheet against an Import Target
         /// </summary>
-        /// <param name="spreadsheet">The spreadsheet to be validated</param>
-        /// <param name="destination">The import target where the spreadsheet rows will be inserted</param>
-        ImportValidationResult Validate(Spreadsheet spreadsheet, IImportDestination destination);
+        /// <param name="source">The import source to be validated</param>
+        /// <param name="destination">The import target where the source rows will be inserted</param>
+        ImportValidationResult Validate(IImportSource source, IImportDestination destination);
     }
 }

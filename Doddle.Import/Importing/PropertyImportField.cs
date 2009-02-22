@@ -3,31 +3,31 @@ using System.Reflection;
 
 namespace Doddle.Import
 {
-    public class PropertyImportField : IImportDestinationField
+    public class PropertyImportField : IImportField
     {
-        private PropertyInfo _propertyInfo;
-
+        private readonly PropertyInfo _propertyInfo;
+        
         public PropertyImportField(PropertyInfo pi)
         {
             _propertyInfo = pi;
         }
 
-        public override bool IsRequired
+        public bool IsRequired
         {
             get { return false; }
         }
 
-        public override string Name
+        public string Name
         {
             get { return _propertyInfo.Name; }
         }
 
-        public override string DataTypeName
+        public string DataTypeName
         {
             get { return _propertyInfo.PropertyType.ToString(); }
         }
 
-        public override Type DataType
+        public Type DataType
         {
             get { return _propertyInfo.PropertyType; }
         }
