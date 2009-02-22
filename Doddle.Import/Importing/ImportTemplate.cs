@@ -9,11 +9,16 @@ namespace Doddle.Import
     /// <summary>
     /// Represents an import template which can be used to import Excel data
     /// </summary>
-    public abstract class ImportTemplate
+    public class ImportTemplate
     {
-        public abstract IEnumerable<IImportDestinationField> GetFields();
+        public IImportDestination ImportDestination { get; set; }
 
-        public void Write(Stream destination)
+        public ImportTemplate(IImportDestination destination)
+        {
+            ImportDestination = destination;
+        }
+
+        public virtual void Write(Stream destination)
         {
             string html = GetHtmlTable();
 
@@ -23,14 +28,14 @@ namespace Doddle.Import
             }
         }
 
-        private string GetHtmlTable()
+        protected virtual string GetHtmlTable()
         {
             StringBuilder html = new StringBuilder();
 
             html.AppendLine("<table border='1' cellpadding='0' cellspacing='0'>");
             html.AppendLine("<tr>");
 
-            foreach (IImportDestinationField field in GetFields())
+            foreach (IImportField field in ImportDestination.Fields)
             {
                 if (field.IsRequired)
                 {

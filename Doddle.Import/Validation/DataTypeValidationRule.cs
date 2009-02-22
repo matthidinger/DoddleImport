@@ -15,17 +15,17 @@ namespace Doddle.Import
             get { return "Validates the spreadsheet for data-type mismatch errors"; }
         }
 
-        public RowValidationResult Validate(SpreadsheetRow row, IImportDestination target, RowValidationResult result)
+        public RowValidationResult Validate(ImportRow sourceRow, IImportDestination target, RowValidationResult result)
         {
-            Spreadsheet spreadsheet = row.Spreadsheet;
+            IImportSource source = sourceRow.ImportSource;
 
-            foreach (IImportDestinationField targetField in target.Fields)
+            foreach (IImportField targetField in target.Fields)
             {
-                if (!spreadsheet.Columns.Contains(targetField.Name))
+                if (!source.Columns.Contains(targetField.Name))
                     continue;
 
 
-                object importData = row[targetField.Name];
+                object importData = sourceRow[targetField.Name];
                 if (importData == null || importData == DBNull.Value)
                     continue;
 

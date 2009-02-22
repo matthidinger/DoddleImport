@@ -6,7 +6,6 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Doddle.Import;
 
 namespace Doddle.Import.WebControls
 {
@@ -99,7 +98,7 @@ namespace Doddle.Import.WebControls
         void _importButton_Click(object sender, EventArgs e)
         {        
             Spreadsheet sheet = GetSpreadsheet();
-            SpreadsheetImporter importer = new SpreadsheetImporter();
+            Importer importer = new Importer();
 
             importer.RowImporting += this.RowImporting;
             importer.RowImported += this.RowImported;
@@ -141,13 +140,5 @@ namespace Doddle.Import.WebControls
             Controls.Add(_validationGrid);
 
         }
-
-
-        public override void RenderControl(HtmlTextWriter writer)
-        {
-            base.RenderControl(writer);
-        }
-
-
     }
 }

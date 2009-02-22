@@ -29,27 +29,17 @@ namespace Doddle.Import
 
     //}
 
-    public class Spreadsheet : IDisposable
+    public class Spreadsheet : IImportSource, IDisposable
     {
-        #region Private Fields
-
         private const string ENUM_WORKSHEET_EXCEPTION = "Could not enumerate worksheets '{0}'.";
         private const string OPEN_SPREADSHEET_EXCEPTION = "Could not open spreadsheet '{0}'.";
         private const string CACHE_SPREADSHEET_EXCEPTION = "Could not cache spreadsheet '{0}'.";
         private const string EXCEL_CONNECTION_STRING = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=YES;IMEX=1;""";
-
-        #endregion
-
-        #region Private Fields
-
+ 
         private string path;
         private string[] worksheets;
         private DbConnection connection;
         private Stream stream;
-
-        #endregion
-
-        #region Constructor
 
         public Spreadsheet(Stream spreadsheet)
         {
@@ -60,10 +50,6 @@ namespace Doddle.Import
         {
             this.path = path;
         }
-
-        #endregion
-
-        #region Public Properties
 
         public string Path
         { get { return path; } }
@@ -78,10 +64,7 @@ namespace Doddle.Import
             }
         }
 
-        #endregion
-
-        #region Public Methods
-
+        
         public DbCommand CreateCommand(string query)
         {
             DbCommand command = Connection.CreateCommand();
@@ -104,29 +87,30 @@ namespace Doddle.Import
             }
         }
 
-        private SpreadsheetRowCollection _rows;
-        public SpreadsheetRowCollection Rows
+        //private SpreadsheetRowCollection _rows;
+        public IEnumerable<ImportRow> Rows
         {
             get
             {
-                if (_rows == null)
+                //if (_rows == null)
+                //{
+                    
+                //}
+
+                //return _rows;
+                DbCommand command = CreateCommand(string.Format("SELECT * FROM [{0}]", this.Worksheets[0]));
+
+                using (DbDataReader reader = ExecuteReader(command))
                 {
-                    DbCommand command = CreateCommand(string.Format("SELECT * FROM [{0}]", this.Worksheets[0]));
 
-                    using (DbDataReader reader = ExecuteReader(command))
-                    {
-
-                        _rows = SpreadsheetRowLoader.LoadRows(this, reader); // new SpreadsheetRowCollection(this, reader);
-                    }
+                    return  SpreadsheetLoader.LoadRows(this, reader);
                 }
-
-                return _rows;
             }
         }
 
 
-        private SpreadsheetColumnCollection _columns;
-        public SpreadsheetColumnCollection Columns
+        private ImportColumnCollection _columns;
+        public ImportColumnCollection Columns
         {
             get
             {
@@ -137,7 +121,7 @@ namespace Doddle.Import
 
                     using (DbDataReader reader = this.ExecuteReader(command))
                     {
-                        _columns = new SpreadsheetColumnCollection(this, reader);
+                        _columns = SpreadsheetLoader.LoadColumns(this, reader);
                     }
                 }
 
@@ -159,10 +143,6 @@ namespace Doddle.Import
             catch { }
         }
 
-        #endregion
-
-        #region Private Properties
-
         private DbConnection Connection
         {
             get
@@ -183,10 +163,6 @@ namespace Doddle.Import
                 }
             }
         }
-
-        #endregion
-
-        #region Private Methods
 
         private string[] LoadWorksheets()
         {
@@ -241,10 +217,6 @@ namespace Doddle.Import
             return path;
         }
 
-        #endregion
-
-        #region IDisposable Members
-
         public void Dispose()
         {
             Dispose(false);
@@ -265,7 +237,5 @@ namespace Doddle.Import
         {
             Dispose(true);
         }
-
-        #endregion
     }
 }

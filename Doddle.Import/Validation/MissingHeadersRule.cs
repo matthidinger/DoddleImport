@@ -15,15 +15,15 @@ namespace Doddle.Import
             get { return "Validates the spreadsheet header for missing fields that are required by the Import Target (SPList)"; }
         }
 
-        public RowValidationResult Validate(SpreadsheetRow row, IImportDestination destination, RowValidationResult result)
+        public RowValidationResult Validate(ImportRow row, IImportDestination destination, RowValidationResult result)
         {
-            Spreadsheet spreadsheet = row.Spreadsheet;
+            IImportSource source = row.ImportSource;
 
-            foreach (IImportDestinationField destinationFields in destination.Fields)
+            foreach (IImportField destinationFields in destination.Fields)
             {
                 if (destinationFields.IsRequired)
                 {
-                    if (!spreadsheet.Columns.Contains(destinationFields.Name))
+                    if (!source.Columns.Contains(destinationFields.Name))
                     {
                         result.IsValid = false;
 

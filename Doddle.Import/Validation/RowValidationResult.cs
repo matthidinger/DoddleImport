@@ -2,11 +2,11 @@ namespace Doddle.Import
 {
     public class RowValidationResult
     {
-        public SpreadsheetRow Row { get; private set; }
+        public ImportRow Row { get; private set; }
         public bool IsValid { get; set; }
         public ColumnValidationErrorCollection ColumnErrors { get; private set; }
 
-        internal RowValidationResult(SpreadsheetRow row)
+        internal RowValidationResult(ImportRow row)
         {
             Row = row;
             IsValid = true;

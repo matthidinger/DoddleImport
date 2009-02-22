@@ -7,10 +7,10 @@ namespace Doddle.Import
 {
     public class ImportRowEventArgs : EventArgs
     {
-        public ImportRowEventArgs(SpreadsheetRow row)
+        public ImportRowEventArgs(ImportRow row)
         {
             Row = row;
         }
-        public SpreadsheetRow Row { get; set; }
+        public ImportRow Row { get; set; }
     }
 }

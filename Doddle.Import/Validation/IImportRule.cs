@@ -10,6 +10,6 @@ namespace Doddle.Import
     public interface IImportRule
     {
         string RuleDescription { get; }
-        RowValidationResult Validate(SpreadsheetRow row, IImportDestination destination, RowValidationResult result);
+        RowValidationResult Validate(ImportRow sourceRow, IImportDestination destination, RowValidationResult result);
     }
 }
