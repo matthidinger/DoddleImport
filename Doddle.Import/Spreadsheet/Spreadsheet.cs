@@ -63,24 +63,23 @@ namespace Doddle.Import
             }
         }
 
-        //private SpreadsheetRowCollection _rows;
+        private List<ImportRow> _rows;
         public IEnumerable<ImportRow> Rows
         {
             get
             {
-                //if (_rows == null)
-                //{
-                    
-                //}
-
-                //return _rows;
-                DbCommand command = CreateCommand(string.Format("SELECT * FROM [{0}]", this.Worksheets[0]));
-
-                using (DbDataReader reader = ExecuteReader(command))
+                if (_rows == null)
                 {
+                    _rows = new List<ImportRow>();
+                    DbCommand command = CreateCommand(string.Format("SELECT * FROM [{0}]", this.Worksheets[0]));
 
-                    return  SpreadsheetLoader.LoadRows(this, reader);
+                    using (DbDataReader reader = ExecuteReader(command))
+                    {
+                        _rows.AddRange(SpreadsheetLoader.LoadRows(this, reader));
+                    }
                 }
+
+                return _rows;
             }
         }
 

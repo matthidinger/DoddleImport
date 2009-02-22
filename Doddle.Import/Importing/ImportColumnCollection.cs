@@ -7,12 +7,6 @@ namespace Doddle.Import
     public class ImportColumnCollection : IEnumerable<ImportColumn>
     {
         private readonly Dictionary<string, ImportColumn> _internalDictionary = new Dictionary<string, ImportColumn>();
-        private IImportSource _source;
-
-        internal ImportColumnCollection(IImportSource source)
-        {
-            _source = source;
-        }
 
         public void Add(string columnName)
         {
@@ -27,7 +21,6 @@ namespace Doddle.Import
         public void Add(string columnName, Type dataType, bool isRequired)
         {
             ImportColumn col = new ImportColumn(columnName, dataType, isRequired);
-//            col.
             Add(col);
         }
 
