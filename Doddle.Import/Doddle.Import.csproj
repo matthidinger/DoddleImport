@@ -110,10 +110,7 @@
     <Compile Include="SharePoint\SPListImportDestination.cs" />
     <Compile Include="SharePoint\SPListImportField.cs" />
     <Compile Include="Spreadsheet\Spreadsheet.cs" />
-    <Compile Include="Spreadsheet\SpreadsheetColumn.cs" />
-    <Compile Include="Spreadsheet\SpreadsheetColumnCollection.cs" />
-    <Compile Include="Spreadsheet\SpreadsheetRow.cs" />
-    <Compile Include="Spreadsheet\SpreadsheetRowCollection.cs" />
+    <Compile Include="Spreadsheet\SpreadsheetLoader.cs" />
     <Compile Include="WebControls\ValidationGrid.cs" />
   </ItemGroup>
   <ItemGroup>
