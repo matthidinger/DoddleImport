@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Doddle.Import.Importing
+namespace Doddle.Import
 {
     /// <summary>
     /// Validates a spreadsheet header for missing fields that are required by the Import Target

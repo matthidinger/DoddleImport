@@ -1,4 +1,4 @@
-namespace Doddle.Import.Importing
+namespace Doddle.Import
 {
     public enum ExcelFieldType
     {

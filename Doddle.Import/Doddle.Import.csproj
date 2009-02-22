@@ -54,6 +54,8 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -103,6 +105,7 @@
     <Compile Include="SpreadsheetColumnCollection.cs" />
     <Compile Include="SpreadsheetRow.cs" />
     <Compile Include="SpreadsheetRowCollection.cs" />
+    <Compile Include="WebControls\ValidationGrid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Doddle.Import.snk" />

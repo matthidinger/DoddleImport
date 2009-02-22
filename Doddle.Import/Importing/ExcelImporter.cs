@@ -4,7 +4,7 @@ using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using System.Configuration;
 
-namespace Doddle.Import.Importing
+namespace Doddle.Import
 {
     public class SpreadsheetImporter
     {

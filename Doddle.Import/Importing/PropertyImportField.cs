@@ -1,7 +1,7 @@
 using System;
 using System.Reflection;
 
-namespace Doddle.Import.Importing
+namespace Doddle.Import
 {
     public class PropertyImportField : IImportDestinationField
     {

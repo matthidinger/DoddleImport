@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Doddle.Import.Importing
+namespace Doddle.Import
 {
     /// <summary>
     /// Represents the destination of a data import from an Excel spreadsheet
