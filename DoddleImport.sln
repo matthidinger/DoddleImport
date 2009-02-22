@@ -3,20 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Import", "Doddle.Import\Doddle.Import.csproj", "{4C76F75B-5B45-4F00-8058-CB24FE7F6D12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Import.SharePoint", "Doddle.Import.SharePoint\Doddle.Import.SharePoint.csproj", "{44A8635D-3927-4D46-A9D2-3D01B595C4AA}"
-EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 3
+		SccNumberOfProjects = 2
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs09.codeplex.com/
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = Doddle.Import\\Doddle.Import.csproj
 		SccProjectName1 = Doddle.Import
 		SccLocalPath1 = Doddle.Import
-		SccProjectUniqueName2 = Doddle.Import.SharePoint\\Doddle.Import.SharePoint.csproj
-		SccProjectName2 = Doddle.Import.SharePoint
-		SccLocalPath2 = Doddle.Import.SharePoint
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,10 +22,6 @@ Global
 		{4C76F75B-5B45-4F00-8058-CB24FE7F6D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C76F75B-5B45-4F00-8058-CB24FE7F6D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C76F75B-5B45-4F00-8058-CB24FE7F6D12}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44A8635D-3927-4D46-A9D2-3D01B595C4AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44A8635D-3927-4D46-A9D2-3D01B595C4AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44A8635D-3927-4D46-A9D2-3D01B595C4AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44A8635D-3927-4D46-A9D2-3D01B595C4AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
