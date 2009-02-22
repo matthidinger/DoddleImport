@@ -6,29 +6,6 @@ using System.Data;
 
 namespace Doddle.Import
 {
-    //public class Spreadsheet
-    //{
-    //    public Spreadsheet(Stream spreadsheet)
-    //    {
-            
-    //    }
-
-    //    public Spreadsheet(string path)
-    //    {
-            
-    //    }
-
-    //    public Spreadsheet()
-    //    {
-    //        Rows = new SpreadsheetRowCollection(this);
-    //        Columns = new SpreadsheetColumnCollection(this);
-    //    }
-
-    //    public SpreadsheetRowCollection Rows { get; private set; }
-    //    public SpreadsheetColumnCollection Columns { get; private set; }
-
-    //}
-
     public class Spreadsheet : IImportSource, IDisposable
     {
         private const string ENUM_WORKSHEET_EXCEPTION = "Could not enumerate worksheets '{0}'.";
@@ -39,7 +16,6 @@ namespace Doddle.Import
         private string path;
         private string[] worksheets;
         private DbConnection connection;
-        private Stream stream;
 
         public Spreadsheet(Stream spreadsheet)
         {
