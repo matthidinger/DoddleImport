@@ -1,7 +1,7 @@
 using System;
 using System.Runtime.Serialization;
 
-namespace Doddle.Import.Importing
+namespace Doddle.Import
 {
     [Serializable]
     public class ImportValidationException : Exception

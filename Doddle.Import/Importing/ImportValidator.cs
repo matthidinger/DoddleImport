@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
-namespace Doddle.Import.Importing
+namespace Doddle.Import
 {
     /// <summary>
     /// Used to validate an excel spreadsheet for importing

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace Doddle.Import.Importing
+namespace Doddle.Import
 {
     /// <summary>
     /// The contact that all Excel Import Rules must implement

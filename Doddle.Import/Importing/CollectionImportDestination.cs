@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 
-namespace Doddle.Import.Importing
+namespace Doddle.Import
 {
     public class CollectionImportDestination<T> : IImportDestination where T : class, new()
     {

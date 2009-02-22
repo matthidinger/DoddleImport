@@ -1,5 +1,5 @@
 using System.Configuration;
-using Doddle.Import.Importing;
+using Doddle.Import;
 using System;
 
 namespace Doddle.Import.Configuration
@@ -34,7 +34,7 @@ namespace Doddle.Import.Configuration
                     throw new SpreadsheetConfigurationException(string.Format("Unable to load type '{0}' for rule '{1}'", ruleDefinition.Type, ruleDefinition.Name));
                 }
 
-                if (ruleType.GetInterface("Doddle.Import.Importing.IImportRule") == null)
+                if (ruleType.GetInterface("Doddle.Import.IImportRule") == null)
                 {
                     throw new SpreadsheetConfigurationException(string.Format("The rule '{0}' does not implement interface 'IImportRule'", ruleDefinition.Name));
                 }
