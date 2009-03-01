@@ -2,7 +2,7 @@ using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Doddle.Importing.WebControls
+namespace Doddle.Web.WebControls
 {
     public class RowNmberTemplate : ITemplate
     {
