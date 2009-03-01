@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
-    public class ImportResult
+    public enum MissingColumnAction
     {
-        public int ImportedRows { get; set; }
+        CreateColumn,
+        IgnoreColumn
     }
 }

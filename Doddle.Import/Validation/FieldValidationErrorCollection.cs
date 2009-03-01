@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
-using Doddle.Import.Configuration;
+using Doddle.Importing.Configuration;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     public class FieldValidationErrorCollection : IEnumerable<FieldValidationError>
     {

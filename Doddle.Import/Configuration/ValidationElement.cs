@@ -1,8 +1,8 @@
 using System.Configuration;
-using Doddle.Import;
+using Doddle.Importing;
 using System;
 
-namespace Doddle.Import.Configuration
+namespace Doddle.Importing.Configuration
 {
     public class ValidationElement : ConfigurationElement
     {
@@ -34,7 +34,7 @@ namespace Doddle.Import.Configuration
                     throw new ConfigurationErrorsException(string.Format("Unable to load type '{0}' for rule '{1}'", ruleDefinition.Type, ruleDefinition.Name));
                 }
 
-                if (ruleType.GetInterface("Doddle.Import.IValidationRule") == null)
+                if (ruleType.GetInterface("Doddle.Importing.IValidationRule") == null)
                 {
                     throw new ConfigurationErrorsException(string.Format("The rule '{0}' does not implement interface 'IValidationRule'", ruleDefinition.Name));
                 }

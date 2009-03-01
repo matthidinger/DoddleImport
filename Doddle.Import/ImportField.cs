@@ -1,6 +1,6 @@
 using System;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     /// <summary>
     /// Represents a single field in an import source or import target

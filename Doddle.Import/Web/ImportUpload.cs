@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Doddle.Import.WebControls
+namespace Doddle.Importing.WebControls
 {
     [DefaultProperty("ImportDestination")]
     [DefaultEvent("ImportComplete")]
@@ -20,7 +20,6 @@ namespace Doddle.Import.WebControls
         {
             ValidationMode = ImportValidationMode.Validate;
         }
-
 
         [Category("Importing")]
         public IImportDestination ImportDestination { get; set; }

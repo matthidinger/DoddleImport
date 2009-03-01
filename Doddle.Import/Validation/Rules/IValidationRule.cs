@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     /// <summary>
     /// The contract to use to create custom import validation rules

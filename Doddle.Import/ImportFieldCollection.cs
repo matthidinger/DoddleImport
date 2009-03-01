@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     public class ImportFieldCollection : IEnumerable<ImportField>
     {

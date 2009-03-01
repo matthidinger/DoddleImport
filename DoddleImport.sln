@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Import", "Doddle.Import\Doddle.Import.csproj", "{4C76F75B-5B45-4F00-8058-CB24FE7F6D12}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Importing", "Doddle.Import\Doddle.Importing.csproj", "{4C76F75B-5B45-4F00-8058-CB24FE7F6D12}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Import.Tests", "Doddle.Import.Tests\Doddle.Import.Tests.csproj", "{C7078353-378A-433C-A3CE-A3C4CDBB9EA8}"
 EndProject
@@ -17,12 +17,12 @@ Global
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs09.codeplex.com/
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = Doddle.Import\\Doddle.Import.csproj
-		SccProjectName1 = Doddle.Import
-		SccLocalPath1 = Doddle.Import
-		SccProjectUniqueName2 = Doddle.Import.Tests\\Doddle.Import.Tests.csproj
-		SccProjectName2 = Doddle.Import.Tests
-		SccLocalPath2 = Doddle.Import.Tests
+		SccProjectUniqueName1 = Doddle.Import.Tests\\Doddle.Import.Tests.csproj
+		SccProjectName1 = Doddle.Import.Tests
+		SccLocalPath1 = Doddle.Import.Tests
+		SccProjectUniqueName2 = Doddle.Import\\Doddle.Importing.csproj
+		SccProjectName2 = Doddle.Import
+		SccLocalPath2 = Doddle.Import
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = DoddleImport.vsmdi

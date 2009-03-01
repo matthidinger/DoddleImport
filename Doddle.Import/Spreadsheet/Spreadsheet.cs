@@ -4,7 +4,7 @@ using System.Data.Common;
 using System.IO;
 using System.Data;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     public class Spreadsheet : IImportSource, IDisposable
     {

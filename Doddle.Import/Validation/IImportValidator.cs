@@ -1,4 +1,4 @@
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     public interface IImportValidator
     {

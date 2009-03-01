@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     public class ImportRowEventArgs : EventArgs
     {

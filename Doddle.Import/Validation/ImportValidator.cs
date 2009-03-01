@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using Doddle.Import.Configuration;
+using Doddle.Importing.Configuration;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     /// <summary>
     /// Used to validate an excel spreadsheet for importing

@@ -5,7 +5,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections;
 
-namespace Doddle.Import.Tests
+namespace Doddle.Importing.Tests
 {
     /// <summary>
     /// Summary description for UnitTest1

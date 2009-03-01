@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     public class Importer
     {

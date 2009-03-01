@@ -1,6 +1,6 @@
 using System.Configuration;
 
-namespace Doddle.Import.Configuration
+namespace Doddle.Importing.Configuration
 {
     public class ValidationMessageElement : ConfigurationElement
     {
