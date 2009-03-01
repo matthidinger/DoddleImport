@@ -12,6 +12,5 @@ namespace Doddle.Import.Configuration
                 return section ?? new ImportSection();
             }
         }
-
     }
 }

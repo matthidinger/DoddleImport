@@ -11,6 +11,6 @@ namespace Doddle.Import
         {
             Row = row;
         }
-        public ImportRow Row { get; set; }
+        public ImportRow Row { get; private set; }
     }
 }

@@ -100,8 +100,10 @@
     <Compile Include="Spreadsheet\Spreadsheet.cs" />
     <Compile Include="Spreadsheet\SpreadsheetLoader.cs" />
     <Compile Include="Web\GridErrorsTemplate.cs" />
-    <Compile Include="Web\ImportManager.cs" />
+    <Compile Include="Importing\ImportEventArgs.cs" />
+    <Compile Include="Web\ImportUpload.cs" />
     <Compile Include="Web\RowNmberTemplate.cs" />
+    <Compile Include="Validation\ValidationEventArgs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Doddle.Import.snk" />
