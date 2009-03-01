@@ -2,8 +2,9 @@
 using System.ComponentModel;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Doddle.Importing;
 
-namespace Doddle.Importing.WebControls
+namespace Doddle.Web.WebControls
 {
     [DefaultProperty("ImportDestination")]
     [DefaultEvent("ImportComplete")]
