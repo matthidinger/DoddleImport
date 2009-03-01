@@ -9,64 +9,21 @@ using System.Web.UI.WebControls;
 
 namespace Doddle.Import.WebControls
 {
-    public class RowNmberTemplate : ITemplate
-    {
-        private Label _label;
-        public void InstantiateIn(Control container)
-        {
-            _label = new Label();
-            _label.DataBinding += new EventHandler(label_DataBinding);
-            container.Controls.Add(_label);
-        }
-
-        void label_DataBinding(object sender, EventArgs e)
-        {
-            object dataItem = DataBinder.GetDataItem(_label.NamingContainer);
-            _label.Text = DataBinder.Eval(dataItem, "Row.RowNumber").ToString();
-        }
-    }
-
-    public class GridErrorsTemplate : ITemplate
-    {
-        private GridView _grid;
-        public void InstantiateIn(Control container)
-        {
-            _grid = new GridView();
-            _grid.AutoGenerateColumns = false;
-            BoundField colField = new BoundField();
-            colField.DataField = "ColumnName";
-            colField.HeaderText = "Column Name";
-
-            BoundField messageField = new BoundField();
-            messageField.DataField = "Message";
-            messageField.HeaderText = "Message";
-
-            _grid.Columns.Add(colField);
-            _grid.Columns.Add(messageField);
-
-            _grid.DataBinding += new EventHandler(_grid_DataBinding);
-            container.Controls.Add(_grid);
-        }
-
-        void _grid_DataBinding(object sender, EventArgs e)
-        {
-            object dataItem = DataBinder.GetDataItem(_grid.NamingContainer);
-            _grid.DataSource = DataBinder.Eval(dataItem, "ColumnErrors");
-        }
-
-    }
-
     [DefaultProperty("ImportDestination")]
     [DefaultEvent("RowImporting")]
     [ToolboxData("<{0}:ImportManager runat=server></{0}:ImportManager>")]
     public class ImportManager : CompositeControl
     {
+        public ImportManager()
+        {
+            ValidationMode = ImportValidationMode.Validate;
+        }
+
         [Category("Importing")]
         public IImportDestination ImportDestination { get; set; }
 
         [Category("Importing")]
-        [DefaultValue(false)]
-        public bool BypassValidation { get; set; }
+        public ImportValidationMode ValidationMode { get; set; }
         
 
         private GridView _validationGrid;
@@ -86,10 +43,6 @@ namespace Doddle.Import.WebControls
             Spreadsheet spreadsheet = GetSpreadsheet();
 
             ImportValidator validator = new ImportValidator();
-            validator.Rules.Add(new MissingHeadersRule());
-            validator.Rules.Add(new RequiredFieldsRule());
-            validator.Rules.Add(new DataTypeValidationRule());
-
             ImportValidationResult result = validator.Validate(spreadsheet, ImportDestination);
 
             _validationGrid.DataSource = result.GetInvalidRows();
@@ -106,22 +59,12 @@ namespace Doddle.Import.WebControls
         {        
             Spreadsheet sheet = GetSpreadsheet();
 
-            ImportValidator validator = new ImportValidator();
-            validator.AllowEmptyRules = BypassValidation;
-
-            if (!BypassValidation)
-            {
-                validator.Rules.Add(new MissingHeadersRule());
-                validator.Rules.Add(new RequiredFieldsRule());
-                validator.Rules.Add(new DataTypeValidationRule());
-            }
-
-            Importer importer = new Importer(validator);
+            Importer importer = new Importer();
             
             importer.RowImporting += this.RowImporting;
             importer.RowImported += this.RowImported;
             
-            importer.Import(sheet, ImportDestination);
+            importer.Import(sheet, ImportDestination, ValidationMode);
         }
 
         protected override void CreateChildControls()
@@ -129,7 +72,6 @@ namespace Doddle.Import.WebControls
             Controls.Clear();
 
             _fileUpload = new FileUpload();
-
 
             _validationGrid = new GridView();
             _validationGrid.AutoGenerateColumns = false;
@@ -159,7 +101,6 @@ namespace Doddle.Import.WebControls
             Controls.Add(_validationButton);
             Controls.Add(_importButton);
             Controls.Add(_validationGrid);
-
         }
     }
 }

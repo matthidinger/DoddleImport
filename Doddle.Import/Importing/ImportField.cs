@@ -5,18 +5,18 @@ namespace Doddle.Import
     /// <summary>
     /// Represents a single field in an import source or import target
     /// </summary>
-    public class ImportColumn
+    public class ImportField
     {
-        public ImportColumn()
+        public ImportField()
         {
         }
 
-        public ImportColumn(string columnName, Type dataType) : this(columnName, dataType, false)
+        public ImportField(string fieldName, Type dataType) : this(fieldName, dataType, false)
         {}
         
-        public ImportColumn(string columnName, Type dataType, bool isRequired)
+        public ImportField(string fieldName, Type dataType, bool isRequired)
         {
-            Name = columnName;
+            Name = fieldName;
             DataType = dataType;
             IsRequired = isRequired;
         }

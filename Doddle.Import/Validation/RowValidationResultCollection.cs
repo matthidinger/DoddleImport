@@ -17,9 +17,9 @@ namespace Doddle.Import
 
         protected override void InsertItem(int index, RowValidationResult item)
         {
-            if (item.IsValid == false)
+            if (item.IsRowValid == false)
             {
-                _importResult.IsSpreadsheetValid = false;
+                _importResult.IsSourceValid = false;
             }
             base.InsertItem(index, item);
         }

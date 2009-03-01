@@ -59,39 +59,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ImportingElement.cs" />
+    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="Configuration\ImportSection.cs" />
     <Compile Include="Configuration\RuleElement.cs" />
     <Compile Include="Configuration\RulesElementCollection.cs" />
-    <Compile Include="Configuration\SpreadsheetConfigurationException.cs" />
-    <Compile Include="Configuration\SpreadsheetElement.cs" />
     <Compile Include="Configuration\ValidationElement.cs" />
     <Compile Include="Configuration\ValidationMessageElement.cs" />
     <Compile Include="Configuration\ValidationMessagesElementCollection.cs" />
     <Compile Include="Importing\IImportSource.cs" />
-    <Compile Include="Importing\ImportColumnCollection.cs" />
-    <Compile Include="Importing\CollectionImportDestination.cs" />
+    <Compile Include="Importing\ImportableDictionary.cs" />
+    <Compile Include="Importing\ImportFieldCollection.cs" />
+    <Compile Include="Importing\ImportCollection.cs" />
     <Compile Include="Importing\Importer.cs" />
     <Compile Include="Importing\ImportRow.cs" />
-    <Compile Include="Validation\ColumnValidationError.cs" />
-    <Compile Include="Validation\ColumnValidationErrorCollection.cs" />
-    <Compile Include="Validation\DataTypeValidationRule.cs" />
+    <Compile Include="Importing\ImportValidationMode.cs" />
+    <Compile Include="Validation\FieldValidationError.cs" />
+    <Compile Include="Validation\FieldValidationErrorCollection.cs" />
+    <Compile Include="Validation\Rules\DataTypeValidationRule.cs" />
     <Compile Include="Importing\ExcelFieldType.cs" />
-    <Compile Include="Importing\FileStructure.cs" />
-    <Compile Include="Validation\IImportRule.cs" />
+    <Compile Include="Validation\Rules\IValidationRule.cs" />
     <Compile Include="Validation\IImportValidator.cs" />
-    <Compile Include="Importing\ImportDestination.cs" />
-    <Compile Include="Importing\ImportColumn.cs" />
+    <Compile Include="Importing\IImportDestination.cs" />
+    <Compile Include="Importing\ImportField.cs" />
     <Compile Include="Importing\ImportResult.cs" />
     <Compile Include="Importing\ImportRowEventArgs.cs" />
-    <Compile Include="Importing\ImportRuleCollection.cs" />
+    <Compile Include="Validation\ValidationRuleCollection.cs" />
     <Compile Include="Importing\ImportTemplate.cs" />
     <Compile Include="Validation\ImportValidationException.cs" />
     <Compile Include="Validation\ImportValidationReportGenerator.cs" />
     <Compile Include="Validation\ImportValidationResult.cs" />
     <Compile Include="Validation\ImportValidator.cs" />
     <Compile Include="Importing\MissingColumnAction.cs" />
-    <Compile Include="Validation\MissingHeadersRule.cs" />
-    <Compile Include="Validation\RequiredFieldsRule.cs" />
+    <Compile Include="Validation\Rules\MissingHeadersRule.cs" />
+    <Compile Include="Validation\Rules\RequiredFieldsRule.cs" />
     <Compile Include="Validation\RowValidationResult.cs" />
     <Compile Include="Validation\RowValidationResultCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -99,7 +99,9 @@
     <Compile Include="SharePoint\SPListImportDestination.cs" />
     <Compile Include="Spreadsheet\Spreadsheet.cs" />
     <Compile Include="Spreadsheet\SpreadsheetLoader.cs" />
-    <Compile Include="WebControls\ValidationGrid.cs" />
+    <Compile Include="Web\GridErrorsTemplate.cs" />
+    <Compile Include="Web\ImportManager.cs" />
+    <Compile Include="Web\RowNmberTemplate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\Doddle.Import.snk" />

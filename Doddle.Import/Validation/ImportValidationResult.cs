@@ -7,18 +7,18 @@ namespace Doddle.Import
 {
     public class ImportValidationResult
     {
-        public bool IsSpreadsheetValid { get; set; }
+        public bool IsSourceValid { get; set; }
         public RowValidationResultCollection RowResults { get; private set; }
 
         public ImportValidationResult()
         {
-            IsSpreadsheetValid = true;
+            IsSourceValid = true;
             RowResults = new RowValidationResultCollection(this);
         }
 
         public IEnumerable<RowValidationResult> GetInvalidRows()
         {
-            return RowResults.Where(r => r.IsValid == false);
+            return RowResults.Where(r => r.IsRowValid == false);
         }
     }
 }

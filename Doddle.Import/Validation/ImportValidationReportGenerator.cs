@@ -1,4 +1,4 @@
-﻿//using System;
+//using System;
 //using System.Collections.Generic;
 //using System.Linq;
 //using System.Text;
@@ -32,12 +32,12 @@
 //        public IEnumerable GetItems()
 //        {
 //            var q = from r in _result.GetInvalidRows()
-//                    from c in r.ColumnErrors
+//                    from c in r.FieldErrors
 //                    select new
 //                    {
 //                        Corrected = false,
 //                        Row = r.Row.RowNumber,
-//                        Column = c.ColumnName,
+//                        Column = c.FieldName,
 //                        Message = c.Message
 //                    };
 

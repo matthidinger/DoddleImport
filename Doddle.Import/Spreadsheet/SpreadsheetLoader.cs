@@ -6,24 +6,24 @@ namespace Doddle.Import
 {
     internal static class SpreadsheetLoader
     {
-        internal static ImportColumnCollection LoadColumns(Spreadsheet sheet, DbDataReader reader)
+        internal static ImportFieldCollection LoadColumns(Spreadsheet sheet, DbDataReader reader)
         {
-            ImportColumnCollection columns = new ImportColumnCollection();
+            ImportFieldCollection fields = new ImportFieldCollection();
 
             if (reader == null)
-                return columns;
+                return fields;
 
             for (int i = 0; i < reader.FieldCount; i++)
             {
-                ImportColumn column = new ImportColumn();
-                column.Name = reader.GetName(i);
+                ImportField field = new ImportField();
+                field.Name = reader.GetName(i);
                 string typeName = reader.GetDataTypeName(i);
-                column.DataType =  Type.GetType(typeName);
+                field.DataType =  Type.GetType(typeName);
 
-                columns.Add(column);
+                fields.Add(field);
             }
 
-            return columns;
+            return fields;
         }
 
         internal static IEnumerable<ImportRow> LoadRows(Spreadsheet spreadsheet, DbDataReader reader)
@@ -36,7 +36,7 @@ namespace Doddle.Import
                 if (i == 1)
                     continue;
 
-                ImportRow row = new ImportRow(spreadsheet);
+                ImportRow row = new ImportRow(spreadsheet, null);
                 row.RowNumber = i;
                 FillRowColumnData(row, reader);
                 yield return row;
@@ -45,7 +45,7 @@ namespace Doddle.Import
 
         internal static void FillRowColumnData(ImportRow row, DbDataReader reader)
         {
-            foreach (ImportColumn col in row.ImportSource.Columns)
+            foreach (ImportField col in row.ImportSource.Fields)
             {
                 try
                 {

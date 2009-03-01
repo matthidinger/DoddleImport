@@ -15,10 +15,6 @@ namespace Doddle.Import
         public Importer()
         {
             _validator = new ImportValidator();
-
-            _validator.Rules.Add(new MissingHeadersRule());
-            _validator.Rules.Add(new RequiredFieldsRule());
-            _validator.Rules.Add(new DataTypeValidationRule());
         }
 
         public Importer(IImportValidator validator)
@@ -57,32 +53,23 @@ namespace Doddle.Import
 
         public ImportResult Import(IImportSource source, IImportDestination destination)
         {
-            return Import(source, destination, false);
+            return Import(source, destination, ImportValidationMode.Validate);
         }
 
-        public ImportResult Import(IImportSource source, IImportDestination destination, bool bypassValidation)
+        public ImportResult Import(IImportSource source, IImportDestination destination, ImportValidationMode validationMode)
         {
-            if (!bypassValidation)
+            if (validationMode == ImportValidationMode.Validate)
             {
                 ImportValidationResult validation = _validator.Validate(source, destination);
-                if (validation.IsSpreadsheetValid == false)
+                if (validation.IsSourceValid == false)
                 {
-                    throw new ImportValidationException("This spreadsheet did not pass validation and cannot be imported.");
+                    throw new ImportValidationException("This import source did not pass validation and cannot be imported.");
                 }
             }
 
-            foreach (ImportColumn col in source.Columns)
+            foreach (ImportField sourceField in source.Fields)
             {
-                if (!destination.FieldExists(col.Name))
-                {
-                    if (MissingColumnAction == MissingColumnAction.CreateColumn)
-                    {
-                        if (destination.SupportsFieldCreation)
-                        {
-                            destination.CreateField(col.Name, col.DataType);
-                        }
-                    }
-                }
+                EnsureFieldExists(destination, sourceField);
             }
 
             int rowCount = 0;
@@ -100,41 +87,18 @@ namespace Doddle.Import
             return result;
         }
 
-        public List<FileStructure> GetFileStructure(Spreadsheet spreadsheet, IImportDestination destination)
+        private void EnsureFieldExists(IImportDestination destination, ImportField field)
         {
-            List<FileStructure> structure = new List<FileStructure>();
-
-            if (spreadsheet == null)
-                return structure;
-
-            FileStructure s = null;
-
-            foreach (ImportColumn col in spreadsheet.Columns)
+            if (!destination.FieldExists(field.Name))
             {
-                s = new FileStructure();
-                s.ColumnName = col.Name;
-                s.DataTypeName = col.DataType.ToString();
-
-                if (destination.FieldExists(col.Name))
+                if (MissingColumnAction == MissingColumnAction.CreateColumn)
                 {
-                    s.ExistsInList = true;
-                    s.Action = "Nothing";
-
+                    if (destination.SupportsFieldCreation)
+                    {
+                        destination.CreateField(field.Name, field.DataType);
+                    }
                 }
-                else
-                {
-                    s.ExistsInList = false;
-
-                    if (MissingColumnAction == MissingColumnAction.CreateColumn)
-                        s.Action = "Create field";
-                    else
-                        s.Action = "Ignore field";
-                }
-
-                structure.Add(s);
             }
-
-            return structure;
         }
     }
 }

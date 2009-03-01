@@ -2,7 +2,7 @@ using System.Configuration;
 
 namespace Doddle.Import.Configuration
 {
-    public class ImportingElement : ConfigurationElement
+    public sealed class ImportSection : ConfigurationSection
     {
         [ConfigurationProperty("validation")]
         public ValidationElement Validation

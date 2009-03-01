@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using Doddle.Import.Configuration;
 
 namespace Doddle.Import
 {
@@ -19,13 +20,15 @@ namespace Doddle.Import
         /// <summary>
         /// The collection of rules to verify during validation
         /// </summary>
-        public ImportRuleCollection Rules { get; private set; }
+        public ValidationRuleCollection Rules { get; private set; }
 
         public ImportValidator()
         {
             AllowEmptyRules = false;
-            Rules = new ImportRuleCollection();
+            Rules = new ValidationRuleCollection();
+            Config.Import.Validation.ConfigureValidator(this);
         }
+
 
         /// <summary>
         /// Validate a spreadsheet against an Import Target
@@ -35,18 +38,20 @@ namespace Doddle.Import
         public ImportValidationResult Validate(IImportSource source, IImportDestination destination)
         {
             if (Rules.Count == 0 && AllowEmptyRules == false)
-                throw new ImportValidationException("Unable to Validate because no Import Rules have been added to the Rules property. If this was intentional set the AllowEmptyRules property to true");
+                throw new ImportValidationException("Unable to Validate because no Import Rules have been added to the Rules property. If this was intentional, set the AllowEmptyRules property to true");
 
             ImportValidationResult importResult = new ImportValidationResult();
 
             foreach (ImportRow row in source.Rows)
             {
                 RowValidationResult rowResult = new RowValidationResult(row);
-
-                foreach (IImportRule rule in Rules)
+                
+                foreach (var rule in Rules)
                 {
-                    rule.Validate(row, destination, rowResult);
+                    rule.Value.Validate(row, destination, rowResult);
+                    rowResult.FormatValidationMessages(rule.Key, rule.Value);
                 }
+                
 
                 importResult.RowResults.Add(rowResult);
             }

@@ -7,36 +7,28 @@ namespace Doddle.Import
 {
     public class ImportRow
     {
-        private readonly Dictionary<string, object> _columnData = new Dictionary<string, object>();
+        private readonly Dictionary<string, object> _fieldData = new Dictionary<string, object>();
+        private readonly object _dataItem;
 
-        public ImportRow(IImportSource source)
+        public ImportRow(IImportSource source, object dataItem)
         {
             ImportSource = source;
+            _dataItem = dataItem;
         }
 
         public int RowNumber { get; set; }
         public IImportSource ImportSource { get; set; }
 
-        public object this[string columnName]
+        public object this[string fieldName]
         {
             get
             {
-                try
-                {
-                    if (_columnData[columnName] == DBNull.Value)
-                        return null;
+                if (_fieldData.ContainsKey(fieldName))
+                    return _fieldData[fieldName];
 
-                    return _columnData[columnName];
-                }
-                catch
-                {
-                    throw new ArgumentOutOfRangeException("columnName", "The import source row does not have a column named " + columnName);
-                }
+                return ImportSource.GetFieldDataFromRow(_dataItem, fieldName);
             }
-            set
-            {
-                _columnData[columnName] = value;
-            }
+            set { _fieldData[fieldName] = value; }
         }
 
     }
