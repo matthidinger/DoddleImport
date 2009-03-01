@@ -33,7 +33,7 @@ namespace Doddle.Import.SharePoint
                 ImportFieldCollection fields = new ImportFieldCollection();
                 foreach (SPField field in _list.GetCustomFields())
                 {
-                    fields.Add(field.Title, field.FieldValueType, field.Required); 
+                    fields.Add(field.Title, field.FieldValueType, field.Required);
                 }
 
                 return fields;
@@ -42,7 +42,7 @@ namespace Doddle.Import.SharePoint
 
         public IEnumerable<ImportRow> Rows
         {
-            get 
+            get
             {
                 foreach (SPListItem item in _list.Items)
                 {
@@ -54,7 +54,7 @@ namespace Doddle.Import.SharePoint
         public object GetFieldDataFromRow(object dataItem, string fieldName)
         {
             SPListItem listItem = dataItem as SPListItem;
-            if(listItem == null)
+            if (listItem == null)
                 return null;
 
             return listItem[fieldName];
@@ -73,25 +73,22 @@ namespace Doddle.Import.SharePoint
 
         public void ImportRow(ImportRow row)
         {
-            using (TransactionScope transaction = new TransactionScope())
+            IImportSource source = row.ImportSource;
+
+            SPListItem item = _list.Items.Add();
+
+            foreach (ImportField col in source.Fields)
             {
-                IImportSource source = row.ImportSource;
-
-                SPListItem item = _list.Items.Add();
-
-                foreach (ImportField col in source.Fields)
+                if (row[col.Name] != null)
                 {
-                    if (row[col.Name] != null)
+                    if (FieldExists(col.Name))
                     {
-                        if (FieldExists(col.Name))
-                        {
-                            item[col.Name] = row[col.Name];
-                        }
+                        item[col.Name] = row[col.Name];
                     }
                 }
-
-                item.Update();
             }
+
+            item.Update();
         }
 
         private SPFieldType GetDataType(string dataType)

@@ -17,7 +17,7 @@ namespace Doddle.Import
         }
 
         public int RowNumber { get; set; }
-        public IImportSource ImportSource { get; set; }
+        public IImportSource ImportSource { get; private set; }
 
         public object this[string fieldName]
         {

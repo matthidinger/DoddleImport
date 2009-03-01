@@ -42,7 +42,7 @@ namespace Doddle.Import
                     foreach (PropertyInfo pi in _itemType.GetProperties())
                     {
                         bool required = !IsNullableType(pi.PropertyType);
-                        _fields.Add(pi.Name, pi.PropertyType, required);
+                        _fields.Add(pi.Name, pi.PropertyType, false);
                     }
                 }
 
@@ -91,7 +91,7 @@ namespace Doddle.Import
             foreach (PropertyInfo pi in _itemType.GetProperties())
             {
                 object value = row[pi.Name];
-                if(value == null)
+                if(value == null || value == DBNull.Value)
                     continue;
 
                 Type propType = pi.PropertyType;
