@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Import.Tests", "Doddle.Import.Tests\Doddle.Import.Tests.csproj", "{C7078353-378A-433C-A3CE-A3C4CDBB9EA8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DCFF592E-6809-4AB3-B5C4-4C4CAE0A2260}"
 	ProjectSection(SolutionItems) = preProject
 		DoddleImport.vsmdi = DoddleImport.vsmdi
@@ -11,18 +9,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Importing", "Doddle.Importing\Doddle.Importing.csproj", "{4C76F75B-5B45-4F00-8058-CB24FE7F6D12}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doddle.Importing.Tests", "Doddle.Importing.Tests\Doddle.Importing.Tests.csproj", "{C7078353-378A-433C-A3CE-A3C4CDBB9EA8}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 3
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tfs09.codeplex.com/
 		SccLocalPath0 = .
-		SccProjectUniqueName1 = Doddle.Import.Tests\\Doddle.Import.Tests.csproj
-		SccProjectName1 = Doddle.Import.Tests
-		SccLocalPath1 = Doddle.Import.Tests
-		SccProjectUniqueName2 = Doddle.Importing\\Doddle.Importing.csproj
-		SccProjectName2 = Doddle.Importing
-		SccLocalPath2 = Doddle.Importing
+		SccProjectUniqueName1 = Doddle.Importing\\Doddle.Importing.csproj
+		SccProjectName1 = Doddle.Importing
+		SccLocalPath1 = Doddle.Importing
+		SccProjectUniqueName2 = Doddle.Importing.Tests\\Doddle.Importing.Tests.csproj
+		SccProjectName2 = Doddle.Importing.Tests
+		SccLocalPath2 = Doddle.Importing.Tests
 	EndGlobalSection
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = DoddleImport.vsmdi
@@ -32,14 +32,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C7078353-378A-433C-A3CE-A3C4CDBB9EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C7078353-378A-433C-A3CE-A3C4CDBB9EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C7078353-378A-433C-A3CE-A3C4CDBB9EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C7078353-378A-433C-A3CE-A3C4CDBB9EA8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4C76F75B-5B45-4F00-8058-CB24FE7F6D12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4C76F75B-5B45-4F00-8058-CB24FE7F6D12}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C76F75B-5B45-4F00-8058-CB24FE7F6D12}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C76F75B-5B45-4F00-8058-CB24FE7F6D12}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7078353-378A-433C-A3CE-A3C4CDBB9EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7078353-378A-433C-A3CE-A3C4CDBB9EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7078353-378A-433C-A3CE-A3C4CDBB9EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7078353-378A-433C-A3CE-A3C4CDBB9EA8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
