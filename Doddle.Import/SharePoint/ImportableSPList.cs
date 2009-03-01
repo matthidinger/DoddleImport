@@ -9,14 +9,14 @@ using System.Transactions;
 namespace Doddle.Import.SharePoint
 {
     /// <summary>
-    /// Represents a SharePoint List import destination
+    /// Provides importing functionality to and from a SharePoint list
     /// </summary>
-    public class SPListImportDestination : IImportDestination, IImportSource
+    public class ImportableSPList : IImportDestination, IImportSource
     {
         private SPList _list;
 
 
-        public SPListImportDestination(SPList list)
+        public ImportableSPList(SPList list)
         {
             _list = list;
         }

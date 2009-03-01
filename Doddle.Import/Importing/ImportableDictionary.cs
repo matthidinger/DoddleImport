@@ -1,9 +1,13 @@
+using System;
 using System.Collections.Generic;
 using System.Collections;
 
 namespace Doddle.Import
 {
-    public class ImportableDictionary:IImportSource
+    /// <summary>
+    /// Provides importing functionality to and from a basic dictionary
+    /// </summary>
+    public class ImportableDictionary : IImportSource, IImportDestination
     {
         private readonly List<IDictionary> _internal; 
         public ImportableDictionary()
@@ -12,7 +16,31 @@ namespace Doddle.Import
             Fields = new ImportFieldCollection();
         }
 
+        public bool FieldExists(string name)
+        {
+            return Fields.Contains(name);
+        }
+
         public ImportFieldCollection Fields { get; set; }
+
+        public bool SupportsFieldCreation
+        {
+            get { return true; }
+        }
+
+        public void CreateField(string fieldName, Type dataType)
+        {
+            Fields.Add(fieldName, dataType);
+        }
+
+        public void ImportRow(ImportRow row)
+        {
+            IDictionary newRow = AddRow();
+            foreach (ImportField field in Fields)
+            {
+                newRow[field.Name] = row[field.Name];
+            }
+        }
 
         public IEnumerable<ImportRow> Rows
         {

@@ -5,12 +5,15 @@ using System.Collections;
 
 namespace Doddle.Import
 {
-    public class CollectionImport<T> : IImportSource, IImportDestination where T : class, new()
+    /// <summary>
+    /// Provides importing functionality to and from a generic collection of items
+    /// </summary>
+    public class ImportableCollection<T> : IImportSource, IImportDestination where T : class, new()
     {
         private readonly IList<T> _internalList;
         private readonly Type _itemType = typeof(T);
 
-        public CollectionImport(IList<T> backingList)
+        public ImportableCollection(IList<T> backingList)
         {
             _internalList = backingList;
         }

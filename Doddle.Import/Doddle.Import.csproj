@@ -69,7 +69,7 @@
     <Compile Include="Importing\IImportSource.cs" />
     <Compile Include="Importing\ImportableDictionary.cs" />
     <Compile Include="Importing\ImportFieldCollection.cs" />
-    <Compile Include="Importing\ImportCollection.cs" />
+    <Compile Include="Importing\ImportableCollection.cs" />
     <Compile Include="Importing\Importer.cs" />
     <Compile Include="Importing\ImportRow.cs" />
     <Compile Include="Importing\ImportValidationMode.cs" />
@@ -84,7 +84,7 @@
     <Compile Include="Importing\ImportResult.cs" />
     <Compile Include="Importing\ImportRowEventArgs.cs" />
     <Compile Include="Validation\ValidationRuleCollection.cs" />
-    <Compile Include="Importing\ImportTemplate.cs" />
+    <Compile Include="Spreadsheet\ImportTemplate.cs" />
     <Compile Include="Validation\ImportValidationException.cs" />
     <Compile Include="Validation\ImportValidationReportGenerator.cs" />
     <Compile Include="Validation\ImportValidationResult.cs" />
@@ -96,7 +96,7 @@
     <Compile Include="Validation\RowValidationResultCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SharePoint\SPListExtensions.cs" />
-    <Compile Include="SharePoint\SPListImportDestination.cs" />
+    <Compile Include="SharePoint\ImportableSPList.cs" />
     <Compile Include="Spreadsheet\Spreadsheet.cs" />
     <Compile Include="Spreadsheet\SpreadsheetLoader.cs" />
     <Compile Include="Web\GridErrorsTemplate.cs" />

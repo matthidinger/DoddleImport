@@ -42,7 +42,7 @@ namespace Doddle.Import.Tests
             IImportSource source = GetValidImportSource();
 
             List<Product> destinationList = new List<Product>();
-            IImportDestination destination = new CollectionImport<Product>(destinationList);
+            IImportDestination destination = new ImportableCollection<Product>(destinationList);
 
             Importer importer = new Importer();
             importer.Import(source, destination, ImportValidationMode.BypassValidation);
@@ -58,7 +58,7 @@ namespace Doddle.Import.Tests
             IImportSource source = GetCategorySource();
 
             List<Product> destinationList = new List<Product>();
-            IImportDestination destination = new CollectionImport<Product>(destinationList);
+            IImportDestination destination = new ImportableCollection<Product>(destinationList);
 
             ImportValidator validator = new ImportValidator();
             var validationResult = validator.Validate(source, destination);
@@ -77,7 +77,8 @@ namespace Doddle.Import.Tests
             row1["ProductID"] = "A";
             row1["ProductName"] = "My Product";
 
-            IImportDestination destination = new CollectionImport<Product>(new List<Product>());
+
+            IImportDestination destination = new ImportableCollection<Product>(new List<Product>());
 
             ImportValidator validator = new ImportValidator();
             validator.Rules.Clear();
@@ -92,6 +93,28 @@ namespace Doddle.Import.Tests
 
 
         [TestMethod]
+        public void RequiredFieldsRule()
+        {
+            ImportableDictionary source = new ImportableDictionary();
+            source.Fields.Add("ProductName", typeof(string));
+
+            IDictionary row1 = source.AddRow();
+            row1["ProductID"] = "A";
+            row1["ProductName"] = "My Product";
+
+            IImportDestination destination = new ImportableCollection<Product>(new List<Product>());
+
+            ImportValidator validator = new ImportValidator();
+            validator.Rules.Clear();
+            validator.Rules.Add("RequiredFieldsRule", new RequiredFieldsRule());
+
+            var result = validator.Validate(source, destination);
+
+            Assert.IsFalse(result.IsSourceValid);
+            Assert.IsTrue(result.RowResults[0].FieldErrors[0].Message.Contains("Required field"), result.RowResults[0].FieldErrors[0].Message);
+        }
+
+        [TestMethod]
         public void MissingHeadersRule()
         {
             ImportableDictionary source = new ImportableDictionary();
@@ -101,7 +124,7 @@ namespace Doddle.Import.Tests
             row1["ProductID"] = "A";
             row1["ProductName"] = "My Product";
 
-            IImportDestination destination = new CollectionImport<Product>(new List<Product>());
+            IImportDestination destination = new ImportableCollection<Product>(new List<Product>());
             
             ImportValidator validator = new ImportValidator();
             validator.Rules.Clear();
@@ -118,7 +141,7 @@ namespace Doddle.Import.Tests
         public void Validation_Messages_Working()
         {
             IImportSource source = GetCategorySource();
-            IImportDestination destination = new CollectionImport<Product>(new List<Product>());
+            IImportDestination destination = new ImportableCollection<Product>(new List<Product>());
 
             ImportValidator validator = new ImportValidator();
             var validationResult = validator.Validate(source, destination);
@@ -132,7 +155,7 @@ namespace Doddle.Import.Tests
             IImportSource source = GetValidImportSource();
 
             List<Product> destinationList = new List<Product>();
-            IImportDestination destination = new CollectionImport<Product>(destinationList);
+            IImportDestination destination = new ImportableCollection<Product>(destinationList);
 
             Importer importer = new Importer();
             importer.RowImporting += importer_RowImporting;
@@ -161,7 +184,7 @@ namespace Doddle.Import.Tests
                 products.Add(p);
             }
 
-            return new CollectionImport<Product>(products);
+            return new ImportableCollection<Product>(products);
         }
 
         private IImportSource GetCategorySource()
@@ -174,7 +197,7 @@ namespace Doddle.Import.Tests
                 categories.Add(c);
             }
 
-            return new CollectionImport<Category>(categories);
+            return new ImportableCollection<Category>(categories);
         }
 
         private IImportSource GetInvalidImportSource()
@@ -187,7 +210,7 @@ namespace Doddle.Import.Tests
                 products.Add(p);
             }
 
-            return new CollectionImport<Product>(products);
+            return new ImportableCollection<Product>(products);
         }
 
     }
