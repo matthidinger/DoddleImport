@@ -4,32 +4,32 @@ using System.Data.Common;
 
 namespace Doddle.Import
 {
-    public class ImportColumnCollection : IEnumerable<ImportColumn>
+    public class ImportFieldCollection : IEnumerable<ImportField>
     {
-        private readonly Dictionary<string, ImportColumn> _internalDictionary = new Dictionary<string, ImportColumn>();
+        private readonly Dictionary<string, ImportField> _internalDictionary = new Dictionary<string, ImportField>();
 
-        public void Add(string columnName)
+        public void Add(string fieldName)
         {
-            Add(columnName, null, false);
+            Add(fieldName, null, false);
         }
 
-        public void Add(string columnName, Type dataType)
+        public void Add(string fieldName, Type dataType)
         {
-            Add(columnName, dataType, false);
+            Add(fieldName, dataType, false);
         }
 
-        public void Add(string columnName, Type dataType, bool isRequired)
+        public void Add(string fieldName, Type dataType, bool isRequired)
         {
-            ImportColumn col = new ImportColumn(columnName, dataType, isRequired);
+            ImportField col = new ImportField(fieldName, dataType, isRequired);
             Add(col);
         }
 
-        public void Add(ImportColumn column)
+        public void Add(ImportField field)
         {
-            _internalDictionary.Add(column.Name, column);
+            _internalDictionary.Add(field.Name, field);
         }
 
-        public ImportColumn this[string name]
+        public ImportField this[string name]
         {
             get
             {
@@ -43,7 +43,7 @@ namespace Doddle.Import
         }
 
 
-        public IEnumerator<ImportColumn> GetEnumerator()
+        public IEnumerator<ImportField> GetEnumerator()
         {
             return _internalDictionary.Values.GetEnumerator();
         }

@@ -10,7 +10,7 @@ namespace Doddle.Import
         /// <summary>
         /// The collection of rules to verify during validation
         /// </summary>
-        ImportRuleCollection Rules { get; }
+        ValidationRuleCollection Rules { get; }
 
         /// <summary>
         /// Validate a spreadsheet against an Import Target

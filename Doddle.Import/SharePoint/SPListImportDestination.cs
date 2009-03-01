@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +11,7 @@ namespace Doddle.Import.SharePoint
     /// <summary>
     /// Represents a SharePoint List import destination
     /// </summary>
-    public class SPListImportDestination : IImportDestination
+    public class SPListImportDestination : IImportDestination, IImportSource
     {
         private SPList _list;
 
@@ -26,18 +26,38 @@ namespace Doddle.Import.SharePoint
             return _list.Fields.ContainsField(name);
         }
 
-        public ImportColumnCollection Fields
+        public ImportFieldCollection Fields
         {
             get
             {
-                ImportColumnCollection columns = new ImportColumnCollection();
+                ImportFieldCollection fields = new ImportFieldCollection();
                 foreach (SPField field in _list.GetCustomFields())
                 {
-                    columns.Add(field.Title, field.FieldValueType, field.Required); 
+                    fields.Add(field.Title, field.FieldValueType, field.Required); 
                 }
 
-                return columns;
+                return fields;
             }
+        }
+
+        public IEnumerable<ImportRow> Rows
+        {
+            get 
+            {
+                foreach (SPListItem item in _list.Items)
+                {
+                    yield return new ImportRow(this, item);
+                }
+            }
+        }
+
+        public object GetFieldDataFromRow(object dataItem, string fieldName)
+        {
+            SPListItem listItem = dataItem as SPListItem;
+            if(listItem == null)
+                return null;
+
+            return listItem[fieldName];
         }
 
         public bool SupportsFieldCreation
@@ -59,7 +79,7 @@ namespace Doddle.Import.SharePoint
 
                 SPListItem item = _list.Items.Add();
 
-                foreach (ImportColumn col in source.Columns)
+                foreach (ImportField col in source.Fields)
                 {
                     if (row[col.Name] != null)
                     {

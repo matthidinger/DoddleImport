@@ -12,30 +12,30 @@ namespace Doddle.Import
         private const string OPEN_SPREADSHEET_EXCEPTION = "Could not open spreadsheet '{0}'.";
         private const string CACHE_SPREADSHEET_EXCEPTION = "Could not cache spreadsheet '{0}'.";
         private const string EXCEL_CONNECTION_STRING = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source={0};Extended Properties=""Excel 8.0;HDR=YES;IMEX=1;""";
- 
-        private string path;
+
         private string[] worksheets;
         private DbConnection connection;
 
         public Spreadsheet(Stream spreadsheet)
         {
-            path = CacheSpreadsheet(spreadsheet);
+            Path = CacheSpreadsheet(spreadsheet);
         }
 
         public Spreadsheet(string path)
         {
-            this.path = path;
+            Path = path;
         }
 
-        public string Path
-        { get { return path; } }
+        public string Path { get; private set; }
 
         public string[] Worksheets
         {
             get
             {
                 if (worksheets == null)
-                { worksheets = LoadWorksheets(); }
+                {
+                    worksheets = LoadWorksheets();
+                }
                 return worksheets;
             }
         }
@@ -59,7 +59,7 @@ namespace Doddle.Import
             }
             catch (Exception exception)
             {
-                throw new Exception(string.Format(ENUM_WORKSHEET_EXCEPTION, path), exception);
+                throw new Exception(string.Format(ENUM_WORKSHEET_EXCEPTION, Path), exception);
             }
         }
 
@@ -80,27 +80,33 @@ namespace Doddle.Import
                 }
 
                 return _rows;
+
             }
         }
 
+        public object GetFieldDataFromRow(object dataItem, string fieldName)
+        {
+            return null;
+        }
 
-        private ImportColumnCollection _columns;
-        public ImportColumnCollection Columns
+
+        private ImportFieldCollection fields;
+        public ImportFieldCollection Fields
         {
             get
             {
-                if (_columns == null)
+                if (fields == null)
                 {
                     // TODO: Change this to only select the TOP row
                     DbCommand command = this.CreateCommand(string.Format("SELECT * FROM [{0}]", this.Worksheets[0]));
 
                     using (DbDataReader reader = this.ExecuteReader(command))
                     {
-                        _columns = SpreadsheetLoader.LoadColumns(this, reader);
+                        fields = SpreadsheetLoader.LoadColumns(this, reader);
                     }
                 }
 
-                return _columns;
+                return fields;
             }
         }
 
@@ -112,8 +118,8 @@ namespace Doddle.Import
             {
                 Dispose(false);
 
-                if (delete && File.Exists(path))
-                    File.Delete(path);
+                if (delete && File.Exists(Path))
+                    File.Delete(Path);
             }
             catch { }
         }
@@ -127,14 +133,14 @@ namespace Doddle.Import
                     if (connection == null)
                     {
                         connection = DbProviderFactories.GetFactory("System.Data.OleDb").CreateConnection();
-                        connection.ConnectionString = string.Format(EXCEL_CONNECTION_STRING, path);
+                        connection.ConnectionString = string.Format(EXCEL_CONNECTION_STRING, Path);
                         connection.Open();
                     }
                     return connection;
                 }
                 catch (Exception exception)
                 {
-                    throw new Exception(string.Format(OPEN_SPREADSHEET_EXCEPTION, path), exception);
+                    throw new Exception(string.Format(OPEN_SPREADSHEET_EXCEPTION, Path), exception);
                 }
             }
         }
@@ -153,7 +159,7 @@ namespace Doddle.Import
             }
             catch (Exception exception)
             {
-                throw new Exception(string.Format(ENUM_WORKSHEET_EXCEPTION, path), exception);
+                throw new Exception(string.Format(ENUM_WORKSHEET_EXCEPTION, Path), exception);
             }
             finally
             {

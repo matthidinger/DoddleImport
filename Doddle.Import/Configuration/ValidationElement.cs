@@ -19,11 +19,11 @@ namespace Doddle.Import.Configuration
         }
 
         /// <summary>
-        /// 
+        /// Apply Configuration settings to a validator
         /// </summary>
-        /// <param name="validator"></param>
-        /// <exception cref="SpreadsheetConfigurationException"></exception>
-        public void Configure(IImportValidator validator)
+        /// <param name="validator">The validator to apply configuration to</param>
+        /// <exception cref="ConfigurationErrorsException"></exception>
+        public void ConfigureValidator(IImportValidator validator)
         {
             foreach (RuleElement ruleDefinition in Rules)
             {
@@ -31,22 +31,27 @@ namespace Doddle.Import.Configuration
 
                 if (ruleType == null)
                 {
-                    throw new SpreadsheetConfigurationException(string.Format("Unable to load type '{0}' for rule '{1}'", ruleDefinition.Type, ruleDefinition.Name));
+                    throw new ConfigurationErrorsException(string.Format("Unable to load type '{0}' for rule '{1}'", ruleDefinition.Type, ruleDefinition.Name));
                 }
 
-                if (ruleType.GetInterface("Doddle.Import.IImportRule") == null)
+                if (ruleType.GetInterface("Doddle.Import.IValidationRule") == null)
                 {
-                    throw new SpreadsheetConfigurationException(string.Format("The rule '{0}' does not implement interface 'IImportRule'", ruleDefinition.Name));
+                    throw new ConfigurationErrorsException(string.Format("The rule '{0}' does not implement interface 'IValidationRule'", ruleDefinition.Name));
                 }
 
-                IImportRule rule = Activator.CreateInstance(ruleType) as IImportRule;
+                IValidationRule rule = Activator.CreateInstance(ruleType) as IValidationRule;
                 if (rule == null)
                 {
-                    throw new SpreadsheetConfigurationException(string.Format("Unable to load type '{0}' for rule '{1}'", ruleDefinition.Type, ruleDefinition.Name));
+                    throw new ConfigurationErrorsException(string.Format("Unable to load type '{0}' for rule '{1}'", ruleDefinition.Type, ruleDefinition.Name));
                 }
 
-                validator.Rules.Add(rule);
+                validator.Rules.Add(ruleDefinition.Name, rule);
             }
+        }
+
+        public string GetValidationMessage(string key)
+        {
+            return Messages[key];
         }
     }
 }

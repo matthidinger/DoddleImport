@@ -5,6 +5,36 @@ namespace Doddle.Import.Configuration
     [ConfigurationCollection(typeof(RuleElement), CollectionType = ConfigurationElementCollectionType.AddRemoveClearMap)]
     public class RulesElementCollection : ConfigurationElementCollection
     {
+        public RulesElementCollection()
+        {
+            AddDefaults();
+        }
+
+        private void AddDefaults()
+        {
+            RuleElement requiredFieldsElement = new RuleElement
+            {
+                Name = "RequiredFieldsRule",
+                Type = "Doddle.Import.RequiredFieldsRule, Doddle.Import"
+            };
+
+            RuleElement missingHeadersElement = new RuleElement
+            {
+                Name = "MissingHeadersRule",
+                Type = "Doddle.Import.MissingHeadersRule, Doddle.Import"
+            };
+
+            RuleElement dataTypeElement = new RuleElement
+            {
+                Name = "DataTypeValidationRule",
+                Type = "Doddle.Import.DataTypeValidationRule, Doddle.Import"
+            };
+
+            BaseAdd(requiredFieldsElement);
+            BaseAdd(missingHeadersElement);
+            BaseAdd(dataTypeElement);
+        }
+
         protected override ConfigurationElement CreateNewElement()
         {
             return new RuleElement();
@@ -12,14 +42,14 @@ namespace Doddle.Import.Configuration
 
         protected override object GetElementKey(ConfigurationElement element)
         {
-            return (element as RuleElement).Name;
+            return ((RuleElement) element).Name;
         }
 
         public new RuleElement this[string name]
         {
             get
             {
-                return ((RuleElement)base.BaseGet(name));
+                return ((RuleElement)BaseGet(name));
             }
         }
     }

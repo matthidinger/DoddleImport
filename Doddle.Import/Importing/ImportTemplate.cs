@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,7 +35,7 @@ namespace Doddle.Import
             html.AppendLine("<table border='1' cellpadding='0' cellspacing='0'>");
             html.AppendLine("<tr>");
 
-            foreach (ImportColumn field in ImportDestination.Fields)
+            foreach (ImportField field in ImportDestination.Fields)
             {
                 if (field.IsRequired)
                 {

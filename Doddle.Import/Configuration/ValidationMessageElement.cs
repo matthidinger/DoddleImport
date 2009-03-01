@@ -4,16 +4,18 @@ namespace Doddle.Import.Configuration
 {
     public class ValidationMessageElement : ConfigurationElement
     {
-        [ConfigurationProperty("name")]
-        public string Name
+        [ConfigurationProperty("rule", IsKey = true)]
+        public string Rule
         {
-            get { return (string)this["name"]; }
+            get { return (string)this["rule"]; }
+            set { this["rule"] = value; }
         }
 
-        [ConfigurationProperty("value")]
-        public string Value
+        [ConfigurationProperty("message")]
+        public string Message
         {
-            get { return (string)this["value"]; }
+            get { return (string)this["message"]; }
+            set { this["message"] = value; }
         }
     }
 }
