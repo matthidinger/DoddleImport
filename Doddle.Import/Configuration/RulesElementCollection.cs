@@ -15,19 +15,19 @@ namespace Doddle.Import.Configuration
             RuleElement requiredFieldsElement = new RuleElement
             {
                 Name = "RequiredFieldsRule",
-                Type = "Doddle.Import.RequiredFieldsRule, Doddle.Import"
+                Type = "Doddle.Import.RequiredFieldsRule, Doddle.Import, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6f5f0fd458d019c9"
             };
 
             RuleElement missingHeadersElement = new RuleElement
             {
                 Name = "MissingHeadersRule",
-                Type = "Doddle.Import.MissingHeadersRule, Doddle.Import"
+                Type = "Doddle.Import.MissingHeadersRule, Doddle.Import, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6f5f0fd458d019c9"
             };
 
             RuleElement dataTypeElement = new RuleElement
             {
                 Name = "DataTypeValidationRule",
-                Type = "Doddle.Import.DataTypeValidationRule, Doddle.Import"
+                Type = "Doddle.Import.DataTypeValidationRule, Doddle.Import, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6f5f0fd458d019c9"
             };
 
             BaseAdd(requiredFieldsElement);
