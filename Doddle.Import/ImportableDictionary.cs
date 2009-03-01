@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     /// <summary>
     /// Provides importing functionality to and from a basic dictionary

@@ -1,5 +1,5 @@
 using System.Collections;
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     public class FieldValidationError
     {

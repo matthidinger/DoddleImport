@@ -1,4 +1,4 @@
-namespace Doddle.Import.Tests
+namespace Doddle.Importing.Tests
 {
     internal class Category
     {

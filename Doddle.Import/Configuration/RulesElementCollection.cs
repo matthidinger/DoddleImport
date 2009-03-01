@@ -1,6 +1,6 @@
 using System.Configuration;
 
-namespace Doddle.Import.Configuration
+namespace Doddle.Importing.Configuration
 {
     [ConfigurationCollection(typeof(RuleElement), CollectionType = ConfigurationElementCollectionType.AddRemoveClearMap)]
     public class RulesElementCollection : ConfigurationElementCollection
@@ -15,19 +15,19 @@ namespace Doddle.Import.Configuration
             RuleElement requiredFieldsElement = new RuleElement
             {
                 Name = "RequiredFieldsRule",
-                Type = "Doddle.Import.RequiredFieldsRule, Doddle.Import, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6f5f0fd458d019c9"
+                Type = "Doddle.Importing.RequiredFieldsRule, Doddle.Importing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6f5f0fd458d019c9"
             };
 
             RuleElement missingHeadersElement = new RuleElement
             {
                 Name = "MissingHeadersRule",
-                Type = "Doddle.Import.MissingHeadersRule, Doddle.Import, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6f5f0fd458d019c9"
+                Type = "Doddle.Importing.MissingHeadersRule, Doddle.Importing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6f5f0fd458d019c9"
             };
 
             RuleElement dataTypeElement = new RuleElement
             {
                 Name = "DataTypeValidationRule",
-                Type = "Doddle.Import.DataTypeValidationRule, Doddle.Import, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6f5f0fd458d019c9"
+                Type = "Doddle.Importing.DataTypeValidationRule, Doddle.Importing, Version=1.0.0.0, Culture=neutral, PublicKeyToken=6f5f0fd458d019c9"
             };
 
             BaseAdd(requiredFieldsElement);

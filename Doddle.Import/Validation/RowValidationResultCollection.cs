@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Collections.ObjectModel;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     public class RowValidationResultCollection : Collection<RowValidationResult>
     {

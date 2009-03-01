@@ -1,5 +1,5 @@
-using Doddle.Import.Configuration;
-namespace Doddle.Import
+using Doddle.Importing.Configuration;
+namespace Doddle.Importing
 {
     public class RowValidationResult
     {

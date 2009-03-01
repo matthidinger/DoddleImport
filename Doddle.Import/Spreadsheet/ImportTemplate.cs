@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     /// <summary>
     /// Represents an import template which can be used to import Excel data

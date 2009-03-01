@@ -5,7 +5,7 @@
 //using System.Collections;
 //using Doddle.Reporting;
 
-//namespace Doddle.Import
+//namespace Doddle.Importing
 //{
 //    /// <summary>
 //    /// Generate a report from an Import Validation Result

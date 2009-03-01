@@ -48,9 +48,9 @@
     <Compile Include="ImportTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Doddle.Import\Doddle.Import.csproj">
+    <ProjectReference Include="..\Doddle.Import\Doddle.Importing.csproj">
       <Project>{4C76F75B-5B45-4F00-8058-CB24FE7F6D12}</Project>
-      <Name>Doddle.Import</Name>
+      <Name>Doddle.Importing</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

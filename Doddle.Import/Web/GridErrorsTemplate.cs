@@ -2,7 +2,7 @@ using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace Doddle.Import.WebControls
+namespace Doddle.Importing.WebControls
 {
     public class GridErrorsTemplate : ITemplate
     {

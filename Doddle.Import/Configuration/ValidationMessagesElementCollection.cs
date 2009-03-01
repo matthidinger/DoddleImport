@@ -1,7 +1,7 @@
 using System;
 using System.Configuration;
 
-namespace Doddle.Import.Configuration
+namespace Doddle.Importing.Configuration
 {
     [ConfigurationCollection(typeof(ValidationMessageElement), CollectionType = ConfigurationElementCollectionType.AddRemoveClearMap)]
     public class ValidationMessagesElementCollection : ConfigurationElementCollection

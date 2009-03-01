@@ -1,6 +1,6 @@
 using System;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     public class ImportEventArgs : EventArgs
     {

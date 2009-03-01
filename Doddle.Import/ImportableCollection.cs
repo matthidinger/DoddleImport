@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Collections;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     /// <summary>
     /// Provides importing functionality to and from a generic collection of items

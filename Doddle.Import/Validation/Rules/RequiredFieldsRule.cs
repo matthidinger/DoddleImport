@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Doddle.Import.Configuration;
+using Doddle.Importing.Configuration;
 
-namespace Doddle.Import
+namespace Doddle.Importing
 {
     /// <summary>
     /// Validates import source rows for any missing fields that are required by the import destination
