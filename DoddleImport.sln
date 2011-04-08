@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DCFF592E-6809-4AB3-B5C4-4C4CAE0A2260}"
 	ProjectSection(SolutionItems) = preProject
 		DoddleImport.vsmdi = DoddleImport.vsmdi
@@ -15,7 +15,7 @@ Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 3
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs09.codeplex.com/
+		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs09
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = Doddle.Importing\\Doddle.Importing.csproj
 		SccProjectName1 = Doddle.Importing
