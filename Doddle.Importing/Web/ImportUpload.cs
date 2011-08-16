@@ -61,7 +61,7 @@ namespace Doddle.Web.WebControls
 
         protected void _validationButton_Click(object sender, EventArgs e)
         {
-            Spreadsheet spreadsheet = GetSpreadsheet();
+            Spreadsheet2003 spreadsheet = GetSpreadsheet();
             if (spreadsheet == null)
                 return;
 
@@ -74,7 +74,7 @@ namespace Doddle.Web.WebControls
             _validationGrid.DataBind();
         }
 
-        private Spreadsheet GetSpreadsheet()
+        private Spreadsheet2003 GetSpreadsheet()
         {
             if (!_fileUpload.HasFile)
             {
@@ -83,7 +83,7 @@ namespace Doddle.Web.WebControls
             }
             try
             {
-                Spreadsheet spreadsheet = new Spreadsheet(_fileUpload.PostedFile.InputStream);
+                Spreadsheet2003 spreadsheet = new Spreadsheet2003(_fileUpload.PostedFile.InputStream);
                 return spreadsheet;
             }
             catch (Exception)
@@ -95,7 +95,7 @@ namespace Doddle.Web.WebControls
 
         private void _importButton_Click(object sender, EventArgs e)
         {
-            Spreadsheet spreadsheet = GetSpreadsheet();
+            Spreadsheet2003 spreadsheet = GetSpreadsheet();
             if (spreadsheet == null)
                 return;
 
