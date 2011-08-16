@@ -6,7 +6,7 @@ using System.Data;
 
 namespace Doddle.Importing
 {
-    public class Spreadsheet : IImportSource, IDisposable
+    public class Spreadsheet2003 : ISpreadsheet
     {
         private const string ENUM_WORKSHEET_EXCEPTION = "Could not enumerate worksheets '{0}'.";
         private const string OPEN_SPREADSHEET_EXCEPTION = "Could not open spreadsheet '{0}'.";
@@ -16,12 +16,12 @@ namespace Doddle.Importing
         private string[] worksheets;
         private DbConnection connection;
 
-        public Spreadsheet(Stream spreadsheet)
+        public Spreadsheet2003(Stream spreadsheet)
         {
             Path = CacheSpreadsheet(spreadsheet);
         }
 
-        public Spreadsheet(string path)
+        public Spreadsheet2003(string path)
         {
             Path = path;
         }
@@ -145,7 +145,7 @@ namespace Doddle.Importing
             }
         }
 
-        private string[] LoadWorksheets()
+        public string[] LoadWorksheets()
         {
             List<string> worksheetList = new List<string>();
             try
@@ -214,7 +214,7 @@ namespace Doddle.Importing
             }
         }
 
-        ~Spreadsheet()
+        ~Spreadsheet2003()
         {
             Dispose(true);
         }

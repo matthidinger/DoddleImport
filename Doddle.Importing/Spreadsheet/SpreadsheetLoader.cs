@@ -6,7 +6,7 @@ namespace Doddle.Importing
 {
     internal static class SpreadsheetLoader
     {
-        internal static ImportFieldCollection LoadColumns(Spreadsheet sheet, DbDataReader reader)
+        internal static ImportFieldCollection LoadColumns(Spreadsheet2003 sheet, DbDataReader reader)
         {
             ImportFieldCollection fields = new ImportFieldCollection();
 
@@ -26,7 +26,7 @@ namespace Doddle.Importing
             return fields;
         }
 
-        internal static IEnumerable<ImportRow> LoadRows(Spreadsheet spreadsheet, DbDataReader reader)
+        internal static IEnumerable<ImportRow> LoadRows(Spreadsheet2003 spreadsheet, DbDataReader reader)
         {
             int i = 1;
             while (reader.Read())
